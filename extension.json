@@ -1,0 +1,23 @@
+{
+	"name": "Hreflang",
+	"version": "0.0.1",
+	"url": "https://www.mediawiki.org/wiki/Extension:Hreflang",
+	"authors": ["Stas Malyshev"],
+	"config": {
+		"HreflangPages": [
+			"en:Pope Francis",
+			"en:Charleston church shooting",
+			"en:Terminator Genisys",
+			"en:Mad Max: Fury Road",
+			"en:Caitlyn Jenner",
+			"en:Deaths in 2015"
+		],
+		"HreflangGenerate": true
+	},
+	"AutoloadClasses": {
+		"HreflangHooks": "./Hreflang.hooks.php"
+	},
+	"Hooks": {
+		"BeforePageDisplay": "HreflangHooks::onBeforePageDisplay"
+	}
+}
