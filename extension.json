@@ -19,5 +19,6 @@
 	},
 	"Hooks": {
 		"BeforePageDisplay": "HreflangHooks::onBeforePageDisplay"
-	}
+	},
+	"manifest_version": 1
 }
