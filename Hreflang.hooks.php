@@ -40,7 +40,7 @@ class HreflangHooks {
 				$foundPage = $foundPage || isset( $pages[$languageLinkText] );
 				$tags[] = Html::element( 'link', array(
 					'rel' => 'alternate',
-					'hreflang' => wfBCP47( $ilInterwikiCode ),
+					'hreflang' => LanguageCode::bcp47( $ilInterwikiCode ),
 					'href' => $languageLinkTitle->getFullURL()
 				) );
 				$addedLink = true;
