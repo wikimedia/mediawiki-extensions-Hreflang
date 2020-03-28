@@ -2,7 +2,7 @@
 	"name": "Hreflang",
 	"version": "0.0.1",
 	"url": "https://www.mediawiki.org/wiki/Extension:Hreflang",
-	"author": ["Stas Malyshev"],
+	"author": "Stas Malyshev",
 	"descriptionmsg": "hreflang-desc",
 	"requires": {
 		"MediaWiki": ">= 1.31.0"
@@ -24,7 +24,7 @@
 		]
 	},
 	"AutoloadClasses": {
-		"HreflangHooks": "./Hreflang.hooks.php"
+		"HreflangHooks": "HreflangHooks.php"
 	},
 	"Hooks": {
 		"BeforePageDisplay": "HreflangHooks::onBeforePageDisplay"
