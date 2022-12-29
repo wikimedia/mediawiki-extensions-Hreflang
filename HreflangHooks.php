@@ -6,6 +6,8 @@
  * @ingroup Extensions
  */
 
+use MediaWiki\MediaWikiServices;
+
 class HreflangHooks {
 
 	/**
@@ -31,13 +33,25 @@ class HreflangHooks {
 				$pageName = $out->getLanguage()->getHtmlCode() . ":" . $out->getTitle()->getBaseText();
 				$foundPage = isset( $pages[$pageName] );
 			}
+			if ( method_exists( MediaWikiServices::class, 'getLanguageNameUtils' ) ) {
+				// MW 1.34+
+				$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+			} else {
+				$languageNameUtils = null;
+			}
 			foreach ( $languageLinks as $languageLinkText ) {
 				$languageLinkTitle = Title::newFromText( $languageLinkText );
 				if ( !$languageLinkTitle ) {
 					continue;
 				}
 				$ilInterwikiCode = $languageLinkTitle->getInterwiki();
-				if ( !Language::isKnownLanguageTag( $ilInterwikiCode ) ) {
+				if ( $languageNameUtils ) {
+					// MW 1.34+
+					$isKnown = $languageNameUtils->isKnownLanguageTag( $ilInterwikiCode );
+				} else {
+					$isKnown = Language::isKnownLanguageTag( $ilInterwikiCode );
+				}
+				if ( !$isKnown ) {
 					continue;
 				}
 				$foundPage = $foundPage || isset( $pages[$languageLinkText] );
